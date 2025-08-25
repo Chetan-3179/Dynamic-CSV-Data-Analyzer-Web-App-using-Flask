@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ theme or 'light' }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body class="funky-bg">
+<div class="container py-5">
+    <h1 class="text-center funky-title">📊 Analysis Results</h1>
+
+    <div class="text-end mb-3">
+        <a href="/download_data" class="btn btn-success">⬇️ Download CSV</a>
+    </div>
+
+    <div class="table-responsive mb-5">
+        {{ tables|safe }}
+    </div>
+
+    <h3 class="mb-4 funky-subtitle">📈 Generated Charts</h3>
+    <div class="row">
+        {% for file in chart_files %}
+            <div class="col-md-6 mb-4 text-center">
+                <img src="{{ url_for('static', filename='charts/' + file) }}" class="img-fluid rounded border shadow">
+                <div class="mt-2">
+                    <a href="/download_chart/{{ file }}" class="btn btn-outline-info btn-sm">⬇️ Download</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/" class="btn btn-secondary">🔁 Analyze Another File</a>
+    </div>
+</div>
+</body>
+</html>
