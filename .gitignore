@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+instance/
+.DS_Store
+uploads/*
+!uploads/.gitkeep
+static/charts/*
+!static/charts/.gitkeep
